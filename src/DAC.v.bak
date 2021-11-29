@@ -1,0 +1,22 @@
+module DAC(
+	input [10: 0] in_data,
+	output [10: 0] out_data,   //DA1传输信号
+	output da1_clk,      //DA1时钟信号
+	output da1_wrt,      //DA1写信号
+);
+	
+	
+assign da1_clk=clk_125;
+assign da1_wrt=clk_125;
+assign da1_data=q;
+
+wire clk_50;
+wire clk_125;
+
+pll pll_inst(
+	.areset  (1'b0),
+	.inclk0  (clk),
+	.c0      (clk_50),
+	.c1      (clk_125),
+	.locked  ()
+	);
